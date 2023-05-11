@@ -1,8 +1,12 @@
 const express = require("express");
 const { Router} = require("express");
-const users = require("./models/User.js");
+const User = require("../models/User.js");
 
 const router = Router();
+
+// define middleware 
+router.use(express.json());
+router.use(express.urlencoded({extended : true}));
 
 // Get all users
 router.get("/", async (req,res,next) => {
@@ -26,6 +30,16 @@ router.get("/:id", async (req,res,next) => {
         }
     } catch (error) {
         next(error);    
+    }
+});
+
+router.post("/", async (req,res,next) => {
+    try {
+        const user = req.body;
+        await User.create(user);
+        res.json(user);
+    } catch (error) {
+        next(error);  
     }
 });
 
