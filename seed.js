@@ -35,4 +35,5 @@ const seed = async () => {
 }
 
 //export my seed function
-module.exports = seed;
+//module.exports = seed;
+seed()

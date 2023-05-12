@@ -1,18 +1,5 @@
-//import our db, Model, DataTypes
-const { db, DataTypes } = require('../db/connection')
-const router = express.Router();
-
- 
-//Creating a User child class from the Model parent class
-const Show = db.define("shows", {
-    title: DataTypes.STRING,
-    genre: DataTypes.ENUM("Comedy", "Drama", "Horror", "Sitcom"),
-    rating: DataTypes.INTEGER,
-    status: DataTypes.STRING,
-});
-
- // code to get all shows
- router.get('/shows', async (req, res, next) => {
+// code to get all shows
+router.get('/shows', async (req, res, next) => {
     try {
       const shows = await Show.findAll();
       res.json(shows);
@@ -106,6 +93,5 @@ router.delete('/shows/:id', async (req, res, next) => {
       next(error);
     }
   });
-  
-//exports
-module.exports = Show;
+
+  module.exports = router;
