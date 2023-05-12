@@ -6,7 +6,7 @@ describe('TV show routes', () => {
   afterEach(async () => {
     await Show.destroy({ truncate: true });
   });
-
+});
   describe('GET /shows', () => {
     it('should return an array of TV shows', async () => {
       await Show.bulkCreate([{ title: 'Show 1' }, { title: 'Show 2' }]);
@@ -26,10 +26,10 @@ describe('GET/shows/:id', () => {
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty("title");
   });
-it('should return 404 for non-existent ID', async () => {
-  const response = await request(app).get('/shows/:id');
-
-  expect(response.statusCode).toBe(404);
-  expect(response.body).toBe({  error: 'Show not found' });
+  it('should return 404 for non-existent ID', async () => {
+    
+    const response = await request(app).get('/shows/:id');
+    expect(response.statusCode).toBe(404);
+    expect(response.body).toBe({  error: 'Show not found' });
 });
 });
