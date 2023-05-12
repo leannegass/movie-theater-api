@@ -1,3 +1,10 @@
+const express = require("express");
+const { Router} = require("express");
+const { Show, User } = require('../models/index')
+const router = Router();
+// define middleware
+router.use(express.json());
+router.use(express.urlencoded({extended : true}));
 // code to get all shows
 router.get('/shows', async (req, res, next) => {
     try {
@@ -39,7 +46,7 @@ router.get('/shows/genre/:genre', async(req, res, next) => {
     }
 });
 
-router.put('/shows/:id/rating', async(req, res, next) => {
+router.put('/:id/rating', async(req, res, next) => {
     try {
         const { id } = req.params;
         const { rating } = req.body;
@@ -58,7 +65,7 @@ router.put('/shows/:id/rating', async(req, res, next) => {
     }
 });
 
-router.put('/shows/:id/status', async (req, res, next) => {
+router.put('/:id/status', async (req, res, next) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
